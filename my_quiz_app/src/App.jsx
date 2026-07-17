@@ -8,6 +8,7 @@ function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false)
   const [totalCorrectAnswer, setTotalCorrectAnswer] = useState(0);
+  const [questionAttempted, setQuestionAttempted] = useState(false)
   
   const currentQuestion = allQuestions[currentIndex];
   function handleNextQuestion() {
@@ -17,6 +18,7 @@ function App() {
       setCurrentIndex((previousIndex) => (previousIndex = 0));
       setQuizFinished((previousValue) => (previousValue = true))
     }
+    setQuestionAttempted((previousAttempt) => previousAttempt = false)
   }
   
   return (
@@ -39,14 +41,19 @@ function App() {
         ></ProgressBar>
         <Question currentQuestion={currentQuestion}
         nextQuestionCount={currentIndex}
+        questionAttempted= {() => setQuestionAttempted((previousAttempt) => previousAttempt= true)}
         correctAnswer={() => setTotalCorrectAnswer((previousCOrrectAnswer) => previousCOrrectAnswer + 1)}
         ></Question>
-        <button
+        </>)}
+        {questionAttempted ?
+        (<button
           onClick={handleNextQuestion}
           className="hover:text-white hover:bg-red-400 text-black font-bold border rounded-lg bg-green-400 py-2 mt-3 "
         >
-          Next Question
-        </button></>)}
+          {(currentIndex == allQuestions.length-1) ? 'Finished' : 'Next Question' }
+        </button>):
+        (<div></div>)
+      }
         
       </div>
     </div>

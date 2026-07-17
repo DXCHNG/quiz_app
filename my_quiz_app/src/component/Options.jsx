@@ -19,7 +19,7 @@ function Options({
     <div
       className={`py-3 px-2 border border-white/20 hover:border-emerald-600  rounded-lg ${colour}`}
     >
-      <button onClick={isOptionClicked} className="text-white ">
+      <button onClick={isOptionClicked} className="text-white w-full text-left">
         {option}
       </button>
     </div>
